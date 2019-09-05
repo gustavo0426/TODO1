@@ -1,4 +1,5 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,9 +10,9 @@
     <meta name="author" content="">
     <title>TODO1</title>
 	<spring:url value="/RESOURCES" var="urlResources" />
+	<spring:url value="/sale/index" var="urlIndex" />
     <link href="${urlResources}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="${urlResources}/bootstrap/css/theme.css" rel="stylesheet">
-
   </head>
 
   <body>
@@ -60,6 +61,22 @@
       <div class="row page-header">          
         <div class="col-lg-12">         
           <h2 class="text text-center"><span class="label label-success">Catalogos</span></h2> 
+        </div>
+      </div>
+      
+     <div class="container marketing">
+        <div class="row">
+        	<c:forEach items="${listProduct}" var="product">
+        		<div class="col-xs-12 col-sm-6 col-md-3">
+		            <img class="img-rounded" src="${urlResources}/images/${product.file}" alt="Generic placeholder image" width="150" height="200">
+		            <h4>${product.name}</h4>
+		            <h4 id="rowContainer">
+		              <span class="label label-default">$${product.price}</span>
+		            </h4>         
+		            <p><a class="btn btn-sm btn-primary" href="${urlIndex}/${product.id}" role="button"><span class="glyphicon glyphicon-shopping-cart"></span>Ver Detalle</a></p>
+		            
+          		</div>
+        	</c:forEach>	
         </div>
       </div>
       

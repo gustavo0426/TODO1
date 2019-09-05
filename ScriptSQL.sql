@@ -1,23 +1,20 @@
 create database todo1;
 use todo1;
-
 CREATE TABLE `product` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `price` decimal(9,2) NOT NULL,
   `stock` smallint NOT NULL,
-  `file` varchar(100),
+  `file` varchar(50),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB CHARSET=utf8;
+);
 
 CREATE TABLE `customer` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `lastName` varchar(50) NOT NULL,
-  `address` varchar(100),
-  `birthdate` DATE NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB CHARSET=utf8;
+);
 
 CREATE TABLE `sale` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -27,7 +24,7 @@ CREATE TABLE `sale` (
   PRIMARY KEY (`id`),
   KEY `fk_sale_customer_id` (`idCustomer`),
   CONSTRAINT `fk_customer_id1` FOREIGN KEY (`idCustomer`) REFERENCES `customer` (`id`)
-) ENGINE=InnoDB CHARSET=utf8;
+);
 
 CREATE TABLE `detail` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -36,22 +33,23 @@ CREATE TABLE `detail` (
   `amount` smallint NOT NULL,
   `price` decimal(9,2) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_detail_sale_id` (`idSale`),
-  KEY `fk_detail_product_id` (`idProduct`),
   CONSTRAINT `fk_detail_sale1` FOREIGN KEY (`idSale`) REFERENCES `sale` (`id`),
   CONSTRAINT `fk_detail_product1` FOREIGN KEY (`idProduct`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB CHARSET=utf8;
+);
 
+insert into customer (name, lastname) values ('Gustavo', 'Castro');
+insert into customer (name, lastname) values ('Mayerlis', 'Sierra');
+insert into customer (name, lastname) values ('Andres', 'Castro');
 
-insert into customer (name, lastname, address, birthdate) values ('Gustavo', 'Castro', 'Venecia cra 68d', '1990-04-26');
-insert into customer (name, lastname, address, birthdate) values ('Mayerlis', 'Sierra', 'Venecia cra 68d', '1987-08-25');
-insert into customer (name, lastname, address, birthdate) values ('Andres', 'Castro', 'Olaya cra 81', '1998-12-11');
-
-insert into product (name, price, stock) values ('Camiseta', 30000, 50);
-insert into product (name, price, stock) values ('Sudadera', 20000, 25);
-insert into product (name, price, stock) values ('Pantaloneta', 5000, 10);
-insert into product (name, price, stock) values ('Vaso', 10000, 20);
-insert into product (name, price, stock) values ('Sueter', 5000, 15);
+insert into product (name, price, stock, file) values ('Vestido Rojo', 30000, 50, 'producto_vestido_rojo.jpg');
+insert into product (name, price, stock, file) values ('Sueter Manga Corta', 20000, 25, 'producto_sueter.jpg');
+insert into product (name, price, stock, file) values ('Pantaloneta', 5000, 10, 'producto_pantaloneta.jpg');
+insert into product (name, price, stock, file) values ('Chaqueta', 10000, 0, 'producto_chaqueta.jpg');
+insert into product (name, price, stock, file) values ('Camisa manga larga', 5000, 15, 'producto_camisa_manga_larga.jpg');
+insert into product (name, price, stock, file) values ('Jean', 5000, 0, 'producto_jeans.jpg'); 
+insert into product (name, price, stock, file) values ('Ropa', 15000, 10, 'producto_sin_imagen.jpg');
 
 select * from customer;
 select * from product;
+
+			

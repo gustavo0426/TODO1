@@ -12,7 +12,7 @@ CREATE TABLE `product` (
 CREATE TABLE `customer` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `lastName` varchar(50) NOT NULL,
+  `lastName` varchar(50),
   PRIMARY KEY (`id`)
 );
 

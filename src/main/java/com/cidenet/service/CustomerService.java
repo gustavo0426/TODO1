@@ -10,4 +10,5 @@ public interface CustomerService {
 	List<Customer> findAll();
 	void save(Customer customer);
 	void delete(Customer customer);
+	Customer findByName(String name);
 }

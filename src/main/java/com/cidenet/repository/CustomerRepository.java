@@ -8,4 +8,5 @@ import com.cidenet.model.Customer;
 @Repository
 public interface CustomerRepository  extends JpaRepository<Customer, Integer>{
 
+	Customer findByName(String name);
 }

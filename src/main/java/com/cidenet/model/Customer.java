@@ -13,9 +13,8 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+	
 	private String name;
-	private String lastName;
 
 	public int getId() {
 		return id;
@@ -33,17 +32,9 @@ public class Customer {
 		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", name=" + name + ", lastName=" + lastName + "]";
+		return "Customer [id=" + id + ", name=" + name + "]";
 	}
 
 }

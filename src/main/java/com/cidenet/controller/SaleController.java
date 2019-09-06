@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,9 +53,10 @@ public class SaleController {
 	}
 	
 	@PostMapping(value = "/save" )
-	public String save(@RequestParam("amount") int count, Product product, Model model ) {
+	public String save(@RequestParam("amount") int count, Product product, Model model, Authentication authentication ) {
 		
-		Sale sale = registerSale(product, count);
+		String name = authentication.getName();
+		Sale sale = registerSale(product, count, name);
 		
 		System.out.println("productoo save "+product);
 		
@@ -80,7 +82,7 @@ public class SaleController {
 		return amoun;
 	}
 	
-	public Sale registerSale(Product product, int amount) {
+	public Sale registerSale(Product product, int amount, String name) {
 		
 		Sale sale = new Sale();
 		
@@ -88,8 +90,7 @@ public class SaleController {
 		double priceTotal = product.getPrice() * amount;
 		
 		Customer customer = new Customer();
-		customer.setName("Mayerlis");
-		customer.setLastName("Sierra");
+		customer.setName(name);
 		customerService.save(customer);
 		
 		System.out.println("customer guardado "+customer);
